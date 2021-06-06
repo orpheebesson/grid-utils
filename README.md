@@ -2,6 +2,8 @@
 
 JavaScript utility tool to build beautiful layouts and best respect the proportions of the designs.
 
+<img src="./demo.gif" alt="Demo Grid-Utils">
+
 ## :eyes: Demo
 
 https://grid-utils.orpheebesson.fr
