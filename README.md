@@ -6,7 +6,7 @@ JavaScript utility tool to build beautiful layouts and best respect the proporti
 
 ## :eyes: Demo
 
-<a href="https://grid-utils.orpheebesson.fr" target="_blank">https://grid-utils.orpheebesson.fr</a>
+https://grid-utils.orpheebesson.fr
 
 ## :arrow_down: Installation
 
