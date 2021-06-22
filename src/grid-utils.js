@@ -37,7 +37,6 @@ const styles = {
 var isEditable = false;
 
 function gridHelper(event) {
-    event.preventDefault();
     var pressedKey = event.key;
 
     switch (pressedKey) {
@@ -50,19 +49,21 @@ function gridHelper(event) {
             destroyElement('.gridInfos');
             break;
         case 'ArrowLeft':
+            event.preventDefault();
             reduceGuttersWidth();
             break;
         case 'ArrowRight':
+            event.preventDefault();
             increaseGuttersWidth();
             break;
         case 'ArrowDown':
+            event.preventDefault();
             reduceGridColumns();
             break;
         case 'ArrowUp':
+            event.preventDefault();
             increaseGridColumns();
             break;
-        default:
-            console.log('No action found for this keyboard key.');
     }
 }
 
