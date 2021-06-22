@@ -9,6 +9,7 @@ const styles = {
         top: 0;
         left: 0;
         width: 100%;
+        pointer-events: none;
         display: grid;
         grid-template-columns: repeat(${maxGridCol}, 1fr);
         grid-template-rows: 100vh;
@@ -24,6 +25,7 @@ const styles = {
         color: white;
         background-color: rgba(0, 0, 0, 0.5);
         padding: 15px;
+        pointer-events: none;
         z-index: 99999;`,
     gridInfosItem:
         `display: flex;
