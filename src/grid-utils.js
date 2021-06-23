@@ -41,13 +41,13 @@ const styles = {
         pointer-events: none;`,
     verticalLine:
         `position: absolute;
-        left: calc(50% - 1px);
+        left: 50%;
         height: 100%;
         width: 1px;
         background: orange;`,
     horizontalLine:
         `position: absolute;
-        top: calc(50% - 1px);
+        top: 50%;
         height: 1px;
         width: 100%;
         background: orange;`
