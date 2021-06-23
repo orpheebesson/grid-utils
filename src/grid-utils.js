@@ -31,7 +31,26 @@ const styles = {
         `display: flex;
         line-height: 1.5`,
     gridInfosProperty:
-        `width: 90px;`
+        `width: 90px;`,
+    cross:
+        `position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        pointer-events: none;`,
+    verticalLine:
+        `position: absolute;
+        left: calc(50% - 1px);
+        height: 100%;
+        width: 1px;
+        background: orange;`,
+    horizontalLine:
+        `position: absolute;
+        top: calc(50% - 1px);
+        height: 1px;
+        width: 100%;
+        background: orange;`
 };
 
 var isEditable = false;
@@ -43,10 +62,12 @@ function gridHelper(event) {
         case 'g':
             appendGridHelper();
             appendGridInfos();
+            appendCross();
             break;
         case 'Escape':
             destroyElement('.grid');
             destroyElement('.gridInfos');
+            destroyElement('.cross');
             break;
         case 'ArrowLeft':
             event.preventDefault();
@@ -130,6 +151,24 @@ function appendGridInfos() {
         gridInfos.appendChild(gridInfosItem);
 
         body.appendChild(gridInfos);
+    }
+}
+
+function appendCross() {
+    if (!document.body.contains(document.querySelector('.cross'))) {
+        var crossContainer = document.createElement('div');
+        crossContainer.classList.add('cross');
+        crossContainer.style = styles.cross;
+
+        var verticalLine = document.createElement('div');
+        verticalLine.style = styles.verticalLine;
+        crossContainer.appendChild(verticalLine);
+
+        var horizontalLine = document.createElement('div');
+        horizontalLine.style = styles.horizontalLine;
+        crossContainer.appendChild(horizontalLine);
+
+        body.appendChild(crossContainer);
     }
 }
 
