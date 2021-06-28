@@ -13,7 +13,8 @@ const styles = {
         display: grid;
         grid-template-columns: repeat(${maxGridCol}, 1fr);
         grid-template-rows: 100vh;
-        grid-gap: 30px;`,
+        grid-gap: 30px;
+        z-index: 99999;`,
     gridColumn:
         `opacity: 0.2;
         background-color: #000000;`,
@@ -38,7 +39,8 @@ const styles = {
         left: 0;
         height: 100%;
         width: 100%;
-        pointer-events: none;`,
+        pointer-events: none;
+        z-index: 99999;`,
     verticalLine:
         `position: absolute;
         left: 50%;
@@ -317,8 +319,4 @@ function initStyleGrid(property) {
 
         grid.style.backgroundColor = 'initial';
     }
-}
-
-if (navigator.userAgent.search('Safari') >= 0 && navigator.userAgent.search('Chrome') < 0) {
-    alert('Grid-Utils not working in Safari. Please use another browser.');
 }
