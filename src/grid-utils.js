@@ -3,18 +3,41 @@ const maxGridCol = window.innerWidth > 768 ? 12 : 6;
 const minGridGap = 5;
 const maxGridGap = 100;
 const body = document.querySelector('body');
+var isEditable = false;
+var isFullGrid = false;
+var paddingGrid = window.innerWidth > 640 ? '0.9375rem' : '0.625rem';
 const styles = {
     gridContainer:
         `position: fixed;
         top: 0;
-        left: 0;
+        left: 50%;
+        height: 100%;
         width: 100%;
+        max-width: 75rem;
+        transform: translateX(-50%);
         pointer-events: none;
         display: grid;
         grid-template-columns: repeat(${maxGridCol}, 1fr);
-        grid-template-rows: 100vh;
         grid-gap: 30px;
-        z-index: 99999;`,
+        z-index: 99999;
+        border: 1px solid orange;
+        padding: ${paddingGrid};`,
+    gridContainerFullWidth:
+        `position: fixed;
+        top: 0;
+        left: 50%;
+        height: 100%;
+        width: 100%;
+        max-width: 75rem;
+        transform: translateX(-50%);
+        pointer-events: none;
+        display: grid;
+        grid-template-columns: repeat(${maxGridCol}, 1fr);
+        grid-gap: 30px;
+        z-index: 99999;
+        padding: ${paddingGrid};
+        max-width: initial;
+        border: none;`,
     gridColumn:
         `opacity: 0.2;
         background-color: #000000;`,
@@ -26,7 +49,6 @@ const styles = {
         color: white;
         background-color: rgba(0, 0, 0, 0.5);
         padding: 15px;
-        pointer-events: none;
         z-index: 99999;`,
     gridInfosItem:
         `display: flex;
@@ -54,8 +76,6 @@ const styles = {
         width: 100%;
         background: orange;`
 };
-
-var isEditable = false;
 
 function gridHelper(event) {
     var pressedKey = event.key;
@@ -152,7 +172,27 @@ function appendGridInfos() {
         gridInfosItem.appendChild(gridInfosNbGutters);
         gridInfos.appendChild(gridInfosItem);
 
+        var gridInfosItem = document.createElement('div');
+        gridInfosItem.classList.add('gridInfos__item');
+        gridInfosItem.style = styles.gridInfosItem;
+
+        var gridInfosPropertyFullWidth = document.createElement('span');
+        gridInfosPropertyFullWidth.classList.add('gridInfos__property__fullWidth');
+        gridInfosPropertyFullWidth.style = styles.gridInfosProperty;
+        gridInfosPropertyFullWidth.innerHTML = 'Full width :';
+
+        var gridInfosFullWidth = document.createElement('input');
+        gridInfosFullWidth.setAttribute('type', 'checkbox');
+        gridInfosFullWidth.classList.add('gridInfos__input__fullWidth');
+
+        gridInfosItem.appendChild(gridInfosPropertyFullWidth);
+        gridInfosItem.appendChild(gridInfosFullWidth);
+        gridInfos.appendChild(gridInfosItem);
+
         body.appendChild(gridInfos);
+
+        var checkboxFullWidth = document.querySelector('.gridInfos__input__fullWidth');
+        checkboxFullWidth.addEventListener('change', setFullWidthGrid);
     }
 }
 
@@ -318,5 +358,15 @@ function initStyleGrid(property) {
         var grid = document.querySelector('.grid');
 
         grid.style.backgroundColor = 'initial';
+    }
+}
+
+function setFullWidthGrid() {
+    var grid = document.querySelector('.grid');
+
+    if (this.checked) {
+        grid.style = styles.gridContainerFullWidth;
+    } else {
+        grid.style = styles.gridContainer;
     }
 }
