@@ -4,7 +4,6 @@ const minGridGap = 5;
 const maxGridGap = 100;
 const body = document.querySelector('body');
 var isEditable = false;
-var isFullGrid = false;
 var paddingGrid = window.innerWidth > 640 ? '0.9375rem' : '0.625rem';
 const styles = {
     gridContainer:
